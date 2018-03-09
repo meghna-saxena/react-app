@@ -1,8 +1,7 @@
 import React from 'react';
 
 //If we want to run some dynamic content as JS and not interpret as text, wrap it in {}
-//props is an object with all the properties of the component
-
+//props is an object which gives access to all the properties/attributes passed to the component
 
 const person = (props) => {
     return (
