@@ -27,11 +27,20 @@ class App extends Component {
     })
   }
 
+  nameChangeHandler = (event) => {
+    this.setState({
+      persons: [
+        { name:'Max', age:28 },
+        { name:event.target.value, age:25 },
+        { name:'Karl', age:29 }   
+      ] 
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Hi, I'm a react app</h1>
-        //
         <button onClick={() => this.switchNameHandler('Shane')}>Switch Name</button> 
         {/* Dont pass parenthesis at the end of handler,otherwise it will immediately get rendered 
         when this portion gets mount on DOM. Instead we just need a to pass a reference. */}
@@ -50,7 +59,9 @@ class App extends Component {
         age={this.state.persons[1].age}
         //passing method references as props between components
         //MOST EFFECIENT WAY TO PASS DATA IS BY BINDING `this` to the specific function of this class
-        click={this.switchNameHandler.bind(this, 'Sherry')}>My hobbies: Reacing</Person>
+        click={this.switchNameHandler.bind(this, 'Max')}
+        changed={this.nameChangeHandler}>
+        My hobbies: Racing</Person>
 
         <Person 
         name={this.state.persons[2].name} 
