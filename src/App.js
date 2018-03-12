@@ -38,10 +38,20 @@ class App extends Component {
   }
 
   render() {
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    }
+
     return (
       <div className="App">
         <h1>Hi, I'm a react app</h1>
-        <button onClick={() => this.switchNameHandler('Shane')}>Switch Name</button> 
+        <button 
+        style={style}
+        onClick={() => this.switchNameHandler('Shane')}>Switch Name</button> 
         {/* Dont pass parenthesis at the end of handler,otherwise it will immediately get rendered 
         when this portion gets mount on DOM. Instead we just need a to pass a reference. */}
 
