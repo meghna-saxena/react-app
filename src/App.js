@@ -14,7 +14,19 @@ class App extends Component {
 
 //Using arrow function to overcome the problem of 'this', which is called by event handler
   switchNameHandler = () => {
-    console.log('Was clicked!');
+    // console.log('Was clicked!');
+    //DON'T mutate/change state directly => this.state.persons[0].name = 'Shane';
+    //use setState method by Component object imported by react
+
+    this.setState({
+      persons: [
+        { name:'Shane', age:28 },
+        { name:'John', age:25 },
+        { name:'Karl', age:29 }
+      ] 
+
+    })
+
   }
 
   render() {
