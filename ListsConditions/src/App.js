@@ -53,33 +53,28 @@ class App extends Component {
       cursor: 'pointer'
     }
 
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          {/* outputting lists */}
+          {this.state.persons.map(person => {
+            return <Person
+            name = {person.name}
+            age = {person.age} />
+          })}
+        </div>
+      );
+    };
+
     return (
       <div className="App">
         <h1>Hi, I'm a react app</h1>
         <button
           style={style}
           onClick={this.togglePersonsHandler}>Toggle Persons</button>
-        {
-          this.state.showPersons === true ?
-        <div>
-          <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age} />
-
-          <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
-            //passing method references as props between components
-            //MOST EFFECIENT WAY TO PASS DATA IS BY BINDING `this` to the specific function of this class
-            click={this.switchNameHandler.bind(this, 'Max')}
-            changed={this.nameChangeHandler}>
-            My hobbies: Racing</Person>
-
-          <Person
-            name={this.state.persons[2].name}
-            age={this.state.persons[2].age} />
-        </div> : null
-        }
+          {persons}
       </div>
     );
   }
