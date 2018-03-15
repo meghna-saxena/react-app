@@ -6,9 +6,9 @@ class App extends Component {
   //New ES6+ enables to use state propert directly without enclosing it in constructor function
   state = {
     persons: [
-      { name: 'Max', age: 28 },
-      { name: 'Mike', age: 25 },
-      { name: 'Neil', age: 29 }
+      { id: 'abc', name: 'Max', age: 28 },
+      { id: 'def', name: 'Mike', age: 25 },
+      { id: 'ghi', name: 'Neil', age: 29 }
     ],
     showPersons: false
   }
@@ -58,7 +58,8 @@ class App extends Component {
             return <Person
             click = {() => this.deletePersonsHandler(index)}
             name = {person.name}
-            age = {person.age} />
+            age = {person.age}
+            key ={person.id} />
           })}
         </div>
       );
