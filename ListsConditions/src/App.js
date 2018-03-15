@@ -13,21 +13,6 @@ class App extends Component {
     showPersons: false
   }
 
-  //Using arrow function to overcome the problem of 'this', which is called by event handler
-  switchNameHandler = (newName) => {
-    // console.log('Was clicked!');
-    //DON'T mutate/change state directly => this.state.persons[0].name = 'Shane';
-    //use setState method by Component object imported by react
-
-    this.setState({
-      persons: [
-        { name: newName, age: 28 },
-        { name: 'John', age: 25 },
-        { name: 'Karl', age: 29 }
-      ]
-    })
-  }
-
   nameChangeHandler = (event) => {
     this.setState({
       persons: [
@@ -38,6 +23,13 @@ class App extends Component {
     })
   }
 
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    // splice removes on element from the array
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
+  }
+ 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     //if doesShow is true, showPersons is false and vice versa
@@ -59,8 +51,9 @@ class App extends Component {
       persons = (
         <div>
           {/* outputting lists */}
-          {this.state.persons.map(person => {
+          {this.state.persons.map((person, index) => {
             return <Person
+            click = {() => this.deletePersonHandler(index)}
             name = {person.name}
             age = {person.age} />
           })}
