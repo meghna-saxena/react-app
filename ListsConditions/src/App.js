@@ -23,8 +23,11 @@ class App extends Component {
     })
   }
 
-  deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+  deletePersonsHandler = (personIndex) => {
+    // change state immutably
+    // First approach -> const persons = this.state.persons.slice();
+    //Another approach
+    const persons = [...this.state.persons];
     // splice removes on element from the array
     persons.splice(personIndex, 1);
     this.setState({persons: persons});
@@ -53,7 +56,7 @@ class App extends Component {
           {/* outputting lists */}
           {this.state.persons.map((person, index) => {
             return <Person
-            click = {() => this.deletePersonHandler(index)}
+            click = {() => this.deletePersonsHandler(index)}
             name = {person.name}
             age = {person.age} />
           })}
