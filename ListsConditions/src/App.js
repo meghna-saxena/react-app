@@ -13,14 +13,25 @@ class App extends Component {
     showPersons: false
   }
 
-  nameChangeHandler = (event) => {
-    this.setState({
-      persons: [
-        { name: 'Max', age: 28 },
-        { name: event.target.value, age: 25 },
-        { name: 'Karl', age: 29 }
-      ]
-    })
+  nameChangeHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    const person = {
+      //everything in react is JS object
+      //spread operator is pulling out old array and adding new array to it
+      //since arrays are reference types they refer the pointer to original object
+      //hence mutate the state
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({ persons: persons });
   }
 
   deletePersonsHandler = (personIndex) => {
@@ -30,9 +41,9 @@ class App extends Component {
     const persons = [...this.state.persons];
     // splice removes on element from the array
     persons.splice(personIndex, 1);
-    this.setState({persons: persons});
+    this.setState({ persons: persons });
   }
- 
+
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     //if doesShow is true, showPersons is false and vice versa
@@ -56,10 +67,11 @@ class App extends Component {
           {/* outputting lists */}
           {this.state.persons.map((person, index) => {
             return <Person
-            click = {() => this.deletePersonsHandler(index)}
-            name = {person.name}
-            age = {person.age}
-            key ={person.id} />
+              click={() => this.deletePersonsHandler(index)}
+              name={person.name}
+              age={person.age}
+              key={person.id}
+              changed={(event) => this.nameChangeHandler(event, person.id)} />
           })}
         </div>
       );
@@ -71,7 +83,7 @@ class App extends Component {
         <button
           style={style}
           onClick={this.togglePersonsHandler}>Toggle Persons</button>
-          {persons}
+        {persons}
       </div>
     );
   }
