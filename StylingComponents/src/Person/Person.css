@@ -7,8 +7,10 @@
     text-align: center;
 }
 
-/* @media (min-width: 500px) {
+/* display Person class with 450px width, if we have viewport of min 500px, i.e pc and tablets, 
+otherwise it will be 60% of the width */
+@media (min-width: 500px) {
     .Person {
         width: 450px;
     }
-} */
+}

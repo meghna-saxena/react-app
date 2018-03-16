@@ -43,16 +43,8 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
-
     let persons = null;
+    let btnClass = ''
 
     if (this.state.showPersons) {
       persons = (
@@ -68,14 +60,12 @@ class App extends Component {
         </div>
       );
 
-      style.backgroundColor = 'red';
-      //we dont assign a new value, so style is still a const
-      //but we assign a new value to its backgroundColor property
+      btnClass = classes.Red;
     };
 
     const assignedClasses = [];
     if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red); 
+      assignedClasses.push(classes.red);
     }
     if (this.state.persons.length <= 1) {
       assignedClasses.push(classes.bold);
@@ -87,8 +77,9 @@ class App extends Component {
         <p className={assignedClasses.join(' ')}>Setting className dynamically</p>
         {/* it joins the array of strings  */}
         <button
-          style={style}
-          onClick={this.togglePersonsHandler}>Toggle Persons</button>
+          className={btnClass}
+          onClick={this.togglePersonsHandler}>Toggle Persons
+        </button>
         {persons}
       </div>
     );
