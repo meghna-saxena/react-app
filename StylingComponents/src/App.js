@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, { StyleRoot } from 'radium';
+// import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -50,12 +50,12 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    }
+      cursor: 'pointer'
+      // ':hover': {
+      //   backgroundColor: 'lightgreen',
+      //   color: 'black'
+      // }
+    };
 
     let persons = null;
 
@@ -85,11 +85,11 @@ class App extends Component {
       // Using radium for pseudoselectors
       // ==================================
 
-      style[':hover'] = {
-        //since its a string, you cant use style.hover, you've to enclose it in sq. bracket
-        backgroundColor: 'grey',
-        color: 'white'
-      }
+    //   style[':hover'] = {
+    //     //since its a string, you cant use style.hover, you've to enclose it in sq. bracket
+    //     backgroundColor: 'grey',
+    //     color: 'white'
+    //   }
     };
 
     // =======================================
@@ -104,7 +104,7 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
+      // <StyleRoot>
       <div className="App">
         <h1>Hi, I'm a react app</h1>
         <p className={classes.join(' ')}>Setting className dynamically</p>
@@ -114,9 +114,10 @@ class App extends Component {
           onClick={this.togglePersonsHandler}>Toggle Persons</button>
         {persons}
       </div>
-      </StyleRoot>
+      // </StyleRoot>
     );
   }
 }
 
-export default Radium(App); //this is HOC, one comp. wrapping another comp to give extra functionality
+// export default Radium(App); //this is HOC, one comp. wrapping another comp to give extra functionality
+export default App;
