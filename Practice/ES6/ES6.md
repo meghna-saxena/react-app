@@ -485,3 +485,66 @@ There are a couple of "fixes" to copy an array by value ("immutably"). One is `s
 But here again, spread can be used to quickly create a copy:
 
 `moreNumbers = [...myNumbers]`
+
+
+
+### Reference and Primitive Types
+
+- Numbers, strings, booleans are primitive types. Whenever you reassign or store a variable in another variable, it will copy the value.
+
+Numbers are primitive types. They create real copy of the values.
+
+```
+const num1 = 1;
+const num2 = num1 //copy
+
+console.log(num2); //1 (but its the copied value)
+```
+
+
+- Objects and arrays are reference types
+
+```
+//this object is stored in memory, and in the constant person
+//we store a pointer referring to that place in memory
+const person = {
+  name: "Meggie"
+};
+
+const secondPerson = person; //and when we assign person to secondPerson, pointer gets copied
+
+//we can check this case by changing person name after being copied
+person.name = "Meg"
+
+console.log(secondPerson); // Meg
+
+//we copied the pointer(not the value) which is referring to same object in memory
+
+```
+
+### How to copy immutably? 
+> By spread operator
+
+```
+const person = {
+  name: "Meggie"
+};
+
+//creating real copy
+const secondPerson = {
+  ...person 
+}; 
+
+//we can check this case by changing person name after being copied
+person.name = "Meg"
+
+console.log(secondPerson); //Meggie
+
+```
+
+
+##### Why are the 'const' values able to be modified? 
+
+Because arrays and objects are reference types in JavaScript. So the actual value stored in the constant is just a pointer, pointing to some place in memory where the array/ object value is stored.
+
+That pointer is never changed and therefore stays constant. The value in memory is changed but since that's NOT the value the constant holds, this is not an issue.
