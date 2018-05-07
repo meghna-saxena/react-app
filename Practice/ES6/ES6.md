@@ -548,3 +548,22 @@ console.log(secondPerson); //Meggie
 Because arrays and objects are reference types in JavaScript. So the actual value stored in the constant is just a pointer, pointing to some place in memory where the array/ object value is stored.
 
 That pointer is never changed and therefore stays constant. The value in memory is changed but since that's NOT the value the constant holds, this is not an issue.
+
+
+
+
+### Refreshing Array functions
+
+```
+const numbers = [1,2,3];
+
+
+const newNumbers = numbers.map((num) => {
+  return num*2
+})
+
+console.log(numbers);
+console.log(newNumbers);
+```
+
+> map() func gets executed on each el of an array and returns a new array
