@@ -303,3 +303,77 @@ person.printGender();
 ```
 
 
+### Spread and Rest Operators
+
+Denoted by - ...
+
+Depending upon its usage, they are called spread or rest operators
+
+##### Spread Operator - used to split up array elements or object properties
+
+Using spread operator on arrays:
+```
+Example:
+const newArray = [...oldArray, 1, 2] 
+//pulls out all the elements from the oldArray and add it to newArray[], and add more elements to it.
+```
+
+Better understanding - 
+
+```
+const numbers = [1,2,3,4];
+const newNumbers = [...numbers, 5];
+
+console.log(newNumbers); // [1, 2, 3, 4, 5]
+```
+```
+// If we omit ...
+const numbers = [1,2,3,4];
+const newNumbers = [numbers, 5]; 
+//without dots numbers will be included as one element inside the new element
+
+console.log(newNumbers); //[[1, 2, 3, 4], 5]
+
+```
+
+
+Using spread operator on objects:
+
+```
+const newObject = {...oldObject, newProp: 5}
+//created new object {} with newProp:5
+//Pull out old object and their properties:values and add them to newObject{} 
+```
+
+Better understanding -
+
+```
+const person = {
+  name: "Meg"
+};
+
+const newPerson = {...person, age:28};
+
+console.log(newPerson); //[object Object] {age: 28, name: "Meg"}
+```
+
+##### Rest Operator
+Same operator used differently.
+Used to merge a list of funct arguments into an array, so that we can apply Array methods on it. We use it in a function argument list. They are used less often.
+
+```
+Example:
+function sortArgs(...args) {
+    return args.sort()
+}
+```
+
+Better understanding -
+
+```
+const filter = (...args) => {
+  return args.filter(el => el === 1) //array.filter() executes the func on every el of array 
+}
+
+console.log(filter(1,2,3)) //[1]
+```

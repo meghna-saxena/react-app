@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ES6 - Spread Operator - class</title>
+    <style>
+        #myContainer {
+            max-width: 340px;
+            margin: 6px auto;
+            padding: 3px 0;
+            background-color: #ddd;
+            border: 1px solid #000;
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myContainer">
+        <div id="myDivElement">See the console</div>
+    </div>
+    <script>
+        const myDiv = document.getElementById('myDivElement');
+
+        class MyClass {
+            constructor() {
+                this.myProperty = "My property";
+                this.myArrowFunction = () => "Constructor properties only";
+            }
+            myMethod() { return "My method"; }// the spread operator will not include this.
+        }
+
+        const myClassInstance = new MyClass();
+
+        const myClassInstanceClone = { ...myClassInstance };
+        
+        myDiv.innerHTML = myClassInstanceClone.myArrowFunction();
+        myDiv.innerHTML += "<br>" + myClassInstanceClone.myMethod;// undefined.
+    </script>
+</body>
+
+</html>

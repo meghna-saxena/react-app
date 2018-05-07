@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ES6 class and spread operator</title>
+</head>
+
+<body>
+    <div>See the console and code comments.</div>
+    <script>
+        'use strict';
+        class Human {
+            constructor(props) {
+                this.gender = "Male";
+            }
+            printMyGender() { console.log(this.gender); }
+        }
+        class Person extends Human {
+            constructor(props) {
+                super(props);
+                this.name = "Alison";
+                this.gender = "Female";
+            }
+            printMyName() { console.log(this.name); }
+        }
+        const person = new Person();
+        console.log("person: ", person);// Person {gender: "Female", name: "Alison"}
+        console.log("...person: ", { ...person });// {gender: "Female", name: "Alison"}
+        //-----------------------------------------------------------------------------
+        const newPerson = { ...person, name: "Max" };
+        console.log("newPerson: ", newPerson);// {gender: "Female", name: "Max"}
+//-----------------------------------------------------------------------------
+// Below: Error! Method printMyName() does not exist inside newPerson.
+// console.log(newPerson.printMyName());
+    </script>
+</body>
+
+</html>
