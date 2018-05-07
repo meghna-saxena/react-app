@@ -232,9 +232,74 @@ person.printGender();
 
 ```
 
-Here, even though we're calling printGender(), it prints female, because it's extended by Persons. That means by inheritance we can access parent class' porperties and methods, and apply further changes on them.
+Here, even though we're calling printGender(), it prints male, because it's extended by Persons. That means by inheritance we can access parent class' porperties and methods, and apply further changes on them.
 
  - Must call super constructor in derived class. If you're extending another class, and implementing constuctor method, then you have to add `super method` in the constructor. Its a keyword and it executes the parent constructor to initialize the parent class.
-
+- When you extend a class, calling super within the subclass constructor calls the the constructor of the parent class to make sure it gets initialized and then can be referenced in the subclass.
 - Classes are used by react to create components.
 - Classes are blueprints of javascript obejcts and are very comparable to constructor fucntions, while inheritance is comparable to prototypes
+
+
+### Classes, Properties & Methods
+Next-gen javascript offers different syntax of initializing properties and methods
+- Properties are like varibales attached to classes/objects
+- Methods are like functions attached to classes/objects
+
+> ES6 syntax for assigning properties in a class
+- Setup properties inside constructor function
+```
+constructor() {
+ this.myProperty: 'value'
+}
+```
+
+More modern syntax which spares us from using constructor function, assign a property directly in class
+
+> ES7 syntax for assigning properties in a class
+
+```
+myProperty: 'value'
+```
+
+Behind the scenes this will still be tranformed to use constructor functions
+
+
+> ES6 syntax for creating methods in a class
+```
+myMethod() {...}
+```
+
+> ES7 syntax for creating methods in a class
+```
+myMethod = () => {...}
+
+The great advantage of this syntax is since we're using arrow function as a property value here, there's no problem with `this` keyword
+```
+
+So rewritten the old example:
+
+```
+lass Human {
+  gender = "female";
+
+  printGender = () => {
+    console.log(this.gender); //still using `this` keyword here when reaching out to property
+  }
+}
+
+class Person extends Human {
+     name = "Meg";
+     gender = "male";
+  }
+  
+  printMyName = () => {
+    console.log(this.name);
+  }
+}
+
+const person = new Person();
+person.printMyName();
+person.printGender();
+```
+
+
