@@ -147,3 +147,94 @@ or import {* as bundled} from utility.js //access with bundled.base etc.
 
 
 ### Classes
+Classes are blueprints for objects, here javascript objects. A class is created with the `class` keyword and it can have properties and methods.
+```
+class Person {
+    name = "meg", //property
+    call = () => {} //method
+}
+```
+
+- Methods are simply functions attached to classes. Properties are variables attached to class.
+
+- A class is instantiated with a `new` keyword
+```
+const myPerson = new Person()
+```
+
+Called by constructor functions:
+```
+myPerson.call()
+console.log(myPerson.name)
+```
+
+- Classes are covenient way of creating constructor functions, so we create js objects with classes as blueprints.
+
+- Classes also support `inheritance` which means you have another class which you inherit from taking all its properties and methods and potentially adding new properties and methods. You might notice them from prototypes.
+
+```
+class Person extends Master
+```
+
+##### Practice time
+
+In simplest form properties added by adding a constructor which is a default function/method you can add to any class which will be executed whenever you instantiate the class.
+Inside the constructor funct., set propeties by `this.___` keyword
+
+Also, add a method in the class to print the name referring to the name property created.
+
+```
+class Person {
+  constructor() {
+    this.name = "Meg"
+  }
+  
+  printMyName() {
+    console.log(this.name);
+  }
+}
+```
+
+Use this class to store an instance in a constant, and execute it.
+```
+const person = new Person();
+person.printMyName();
+```
+
+##### Practice time - Inheritance
+
+```
+class Human {
+  constructor() {
+    this.gender = "female"
+  }
+  
+  printGender() {
+    console.log(this.gender);
+  }
+}
+
+class Person extends Human {
+  constructor() {
+    super();
+    this.name = "Meg";
+    this.gender = "male";
+  }
+  
+  printMyName() {
+    console.log(this.name);
+  }
+}
+
+const person = new Person();
+person.printMyName();
+person.printGender();
+
+```
+
+Here, even though we're calling printGender(), it prints female, because it's extended by Persons. That means by inheritance we can access parent class' porperties and methods, and apply further changes on them.
+
+ - Must call super constructor in derived class. If you're extending another class, and implementing constuctor method, then you have to add `super method` in the constructor. Its a keyword and it executes the parent constructor to initialize the parent class.
+
+- Classes are used by react to create components.
+- Classes are blueprints of javascript obejcts and are very comparable to constructor fucntions, while inheritance is comparable to prototypes
