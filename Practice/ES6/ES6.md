@@ -377,3 +377,111 @@ const filter = (...args) => {
 
 console.log(filter(1,2,3)) //[1]
 ```
+
+
+### Destructuring
+
+Easily extract array elements or object properties and store them in variables. When you firt hear it, it may sound similar to what spread operator does.
+
+Spread operator takes out all elements, all properties and distributes them to a new array or object
+
+Destructuring allows to pull out single elements or properties and store them in variables for arrays and objects.
+
+##### Array Destructuring
+
+```
+[a, b] = ['Raj', 'Meggie']
+console.log(a) //Raj
+conole.log(b) //Meggie
+
+We are assigning the array on the right side to the variable a and b on left side.
+
+```
+
+Example:
+
+```
+const numbers = [1,2,3];
+[num1, num2] = numbers;
+
+console.log(num1, num2); // 1, 2
+```
+
+```
+const numbers = [1,2,3];
+[num1, ,num3] = numbers; //leave out one space
+
+console.log(num1, num3); // 1, 3
+```
+
+
+##### Object Destructuring
+
+```
+{name} = {name:'Raj', age:28} 
+console.log(name) //Raj
+```
+
+
+> FAQS: Why it makes sense to use array destructuring instead of array[0], array[1], array[2] ?
+
+Short: It makes your code read and understand easier.
+
+Let me make up an example in plain javascript:
+Let's say you have an input field in a form, where you ask the user for a date represented as a string in the lets say German date format.
+
+```
+var input = "03.04.2018"
+var splittedDate = input.split("."); // this gets you an array like [03,04,2018]
+```
+ now you have code where you want to do some stuff with the different parts of the date.
+
+```
+console.log("Date in some other time format: "+splittedDate[3]+"-"+splittedDate[2]+"-"+splittedDate[1])
+```
+
+- - If you use array destructuring, you get it much nicer since you don't have to remember the index anymore:
+
+```
+var [day,month,year] = input.split(".");
+console.log("Date in some other time format: "+year+"-"+month+"-"+day)
+```
+
+
+Destructuring allows you to pull out all elements in one step - you can essentially turn an array into a list.
+
+There are two use cases where this is especially useful:
+
+1) You have a function that accepts a list of argument but not an array. You want to pass an array though.
+
+Example: `Math.max(n1, n2, ...)` 
+
+If you have an array (e.g. `myNumbers = [1, 2, 3] `), you can't pass it to max() like this: 
+
+`Math.max(myNumbers) // this will fail `
+
+Sure, you could do
+
+`Math.max(myNumbers[0], myNumbers[1], myNumbers[2]) `
+
+But that's extremely inflexible.
+
+##### Spread to the rescue:
+
+`Math.max(...myNumbers) `// yields 3 
+
+2) You want to really clone an array.
+
+In JavaScript, arrays and objects are reference types.
+
+So moreNumbers = myNumbers  will NOT create a copy of the values but only of the pointer to the values.
+
+So if you then do moreNumbers.push(4) , myNumbers  will also contain that new element.
+
+There are a couple of "fixes" to copy an array by value ("immutably"). One is `slice()`.
+
+`moreNumbers = myNumbers.slice()` // this creates a real copy, pushing to moreNumbers won't affect myNumbers 
+
+But here again, spread can be used to quickly create a copy:
+
+`moreNumbers = [...myNumbers]`
