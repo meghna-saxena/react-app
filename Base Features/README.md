@@ -216,3 +216,42 @@ Here, the NewPost  component contains `state`. Only class-based components can d
 state  simply is a property of the component class, you have to call it state  though - the name is not optional. You can then access it via `this.state` in your class JSX code (which you return in the required render()  method).
 
 Whenever state  changes, the component will re-render and reflect the new state. The difference to props is, that this happens within one and the same component - you don't receive new data (props ) from outside!
+
+
+
+## Handling events with methods
+
+- Upon trigger of an event, execute a method of class. You usually name the method with 'handler' word at the end since it signifies that you're not actively calling the method, but assigning as an event handler.
+
+Property which holds a funct that gets executed
+
+```
+switchNameHandler = () => {
+
+} 
+```
+
+> Dont add parenthesis at the end of the eventhandler when you call it on onClick, otherwise it will get executed immediately once react renders to the DOM.
+> Only pass a reference, by using `this.switchEventHandler`
+
+If you dont use arrow func in creating event hadnler, you'll run into error if you try to use `this` because `this` will not refer to the class at run time.
+
+
+Note: 
+Arrow functions do not understand what `this` is. Therefore, arrow functions do not redirect the (relative) class' `this`. 
+
+Method declarations (a normal / regular function) do understand `this`. Example:  DOM events like a button click, a method declaration will redirect (capture) the (relative) class' this. So, with method declarations, `bind(this)` must be used to fix the problem. 
+
+If an arrow function can be used, (almost always) it's the better choice.   
+
+
+## setState
+- Updates state immuatably and re-render the DOM
+
+
+### How would we pass the argument to the handler if we cannot use "()" onClick?
+ - Two options:
+
+1) <div onClick={this.myHandler.bind(this, 'your argument')}> 
+
+2) <div onClick={() => this.myHandler('your argument')}> 
