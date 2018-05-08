@@ -90,3 +90,46 @@ When creating components, you have the choice between two different ways:
 
 2. Class-based components (also referred to as "containers", "smart" or "stateful" components) => 
 `class Cmp extends Component { render () { return <div>some JSX</div> } }`
+
+
+Extra Note: For rendering some dynamic content in JSX which you want to run as javascript code and not interpret as text, wrap wit curly braces {}.
+
+
+
+## Working with props
+- Props are object with all the properties of a component. 
+- In func comp, use props._ and in clss comp use this.props._
+
+
+> New way of using props inside func component
+
+##ES6 deconstruct syntax with props
+```
+export const Person = ({name, age}) => {
+  return (
+    <div>
+      <p>Nome: {name}</p>
+      <p>Idade: {age}</p>
+    </div>
+)};
+```
+You can even do it shorter:
+
+```
+export const Person = ({name, age}) => (
+  <div> 
+    <p>Nome: {name}</p> 
+    <p>Idade: {age}</p> 
+  </div> 
+);
+```
+
+`props.children` refers to any properties/plain text between opening and closing tags of component.
+
+```
+ {/* <p>{props.children}</p> */} 
+ 
+Since on inspecting elements, we see that for other components also props.children gets applied, but they have empty paragraphs, so rewritten as:
+
+{props.children ? <p>{props.children}</p> : null}  
+``` 
