@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ES6 - filter() - map()</title>
+    <style>
+        #myContainer {
+            max-width: 200px;
+            margin: 6px auto;
+            padding: 10px 0;
+            background-color: #ddd;
+            border: 1px solid #000;
+            text-align: center;
+            font-size: 16px;
+            font-family: 'Helvetica';
+            font-weight: lighter;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myContainer">
+        <div id="myDivElement"></div>
+    </div>
+    <script>
+        'use strict';
+        const myDiv = document.querySelector('#myDivElement');
+        const myPeopleArray = [
+            { name: 'Jim', age: 43 },
+            { name: 'Alison', age: 26 },
+            { name: 'Max', age: 39 },
+            { name: 'Betty', age: 18 },
+            { name: 'Sally', age: 21 }
+        ];
+        const myPerson = myPeopleArray.find(myPersonItem => myPersonItem.age === 39);
+        myDiv.innerHTML = myPerson.name;// Max
+    // find() returns the first array item (in this case, an object),
+    // that the callback function's condition returns as true.
+    </script>
+</body>
+
+</html>
+<!-- Above: I query using age to return a name (Max). Also, JSON uses this format. So, the array helpers can be used for JSON. -->
