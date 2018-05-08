@@ -255,3 +255,22 @@ If an arrow function can be used, (almost always) it's the better choice.
 1) <div onClick={this.myHandler.bind(this, 'your argument')}> 
 
 2) <div onClick={() => this.myHandler('your argument')}> 
+here onClick calls anonymous funct which will return the result of this method getting executed
+//However its an inefficient syntax, since react can rerender certain things, so use bind(this) manner more.
+
+
+## Functional comp vs. class comp
+
+- Functional comp are function returning some jsx.
+- They only render something on DOM
+- They are dynamic because of props   
+- You can add some logic prior to calling return
+- Dont manipulate app state
+- listen to event here and execute the method inside container
+
+
+- State should only be changed in containers.
+- Containers are components which contains some part of app state
+
+
+##Passing method references b/w components
