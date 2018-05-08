@@ -273,4 +273,14 @@ here onClick calls anonymous funct which will return the result of this method g
 - Containers are components which contains some part of app state
 
 
-##Passing method references b/w components
+## Adding two-way binding
+Chnaging the name dynamically
+
+See the current value of the name in the input right from the start. When we change it, it should propogate that change so that state can get updated.
+
+ <input type="text" onChange={props.changed} value={props.name} /> //value attribut does the two-way binding
+
+
+ ## Styling components
+ - Either use css files whose access is on global level or use inline styles which are scoped to that particular component
+ - Hovering styles are not done in inline styles
