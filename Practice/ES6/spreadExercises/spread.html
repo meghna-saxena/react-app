@@ -7,29 +7,31 @@
 </head>
 
 <body>
-    <div>See the console and code comments.</div>
+    <p>See the console and code comments.</p>
     <script>
-        'use strict';
         class Human {
             constructor(props) {
                 this.gender = "Male";
             }
             printMyGender() { console.log(this.gender); }
         }
+
         class Person extends Human {
             constructor(props) {
                 super(props);
-                this.name = "Alison";
+                this.name = "Meg";
                 this.gender = "Female";
             }
             printMyName() { console.log(this.name); }
         }
+
         const person = new Person();
-        console.log("person: ", person);// Person {gender: "Female", name: "Alison"}
-        console.log("...person: ", { ...person });// {gender: "Female", name: "Alison"}
+
+        console.log("person: ", person);// Person {gender: "Female", name: "Meg"}
+        console.log("...person: ", { ...person });// {gender: "Female", name: "Meg"}
         //-----------------------------------------------------------------------------
-        const newPerson = { ...person, name: "Max" };
-        console.log("newPerson: ", newPerson);// {gender: "Female", name: "Max"}
+        const newPerson = { ...person, name: "Raj" };
+        console.log("newPerson: ", newPerson);// {gender: "Female", name: "Raj"}
 //-----------------------------------------------------------------------------
 // Below: Error! Method printMyName() does not exist inside newPerson.
 // console.log(newPerson.printMyName());
