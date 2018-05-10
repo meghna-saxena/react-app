@@ -102,7 +102,7 @@ Error: For using media queries/keyframes, wrap application in StyleRoot componen
 How to scope css file to a particular component's js file? So that whatever style is decribed there, is only applied on a particular component.
 
 For enabling css modules, tweak the build config of project. 
-- Git commit all the changes first
+- Git commit all the changes first.  Committing prior to ejecting so that you can always go back to the un-ejected state (because there's no command to reverse it otherwise).
 - Run `npm run eject` to get the config files, to make changes in the configuration.
 - We get config and scripts folder. All under-the-hood features can be seen now.
 - webpack is a bundling tool which applies transfromation & optimization on all files to bundle them together. So since webpack parse css code, we have to make changes there.
