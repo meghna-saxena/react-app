@@ -37,4 +37,67 @@ make delete event handler and pass the id to it. Use splice method to remove 1 i
 
 
 ## Updating state immutably
+Object and arrays are ref types.
+so if you do `const persons = this.state.persons;`
+you're getting a pointer to the original persons object, and thereby you mutate the original state when you slice or make modifications to it.
+
+A good practise is to make a copy of original array/object before manipulating it. 
+
+2 ways of doing it: 
+
+1. Simple way of doing it is slice() method without args. It copies the array and returns a new one which is then stored in the constant variable
+
+const persons = this.state.persons(slice);
+
+2. Another alternative, es6 spread operator. Spreads out/pulls out/strips the old object elements and wrap it with new object/array
+
+const persons = [...this.state.persons]; 
+
+
+## Lists & keys
+
+- Key property is imp when rendering a list.
+- When mapping thru an array, the key helps react to update the list efficiently. Otherwise it will re-render the whole list instead of a particular list item.
+- Key should be unique.
+
+
+## Flexible Lists
+Use event handler on input onChange and pass the event, person.id of the item, so that name change takes place only on that item.
+
+Inside event handler method, assign the value of that passed person id to a new variable
+`const person = this.state.persons.find()`
+
+and use find() javascript method. The find() method returns the value of the first element in the array that satisfies the provided testing function. We can also use findIndex() to find the el in an array, `findIndex()` method returns the index of the first element in the array that satisfies the provided testing function.
+
+Unlike map(), with these func we dont map this el into something new, instead we return true/false if that's the el satisfying the given conditons
+
+
+const person = {...this.state.persons[personIndex]}; //since person is a object, update immutably
+
+Another way: 
+// const person = Object.assign({}, this.state.persons[personIndex]);
+
+After changing the single person item, again copy the entire array of persons. Access the particular id of this new persons array and assign the changed person to it.
+
+```
+nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    // const person = Object.assign({}, this.state.persons[personIndex]);
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({ persons: persons });
+  }
+  ```
+
 
