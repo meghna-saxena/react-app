@@ -97,7 +97,7 @@ Error: For using media queries/keyframes, wrap application in StyleRoot componen
 
 
 
-## Enabling & using CSS modules for scoped styling
+## CSS modules for scoped styling
 
 How to scope css file to a particular component's js file? So that whatever style is decribed there, is only applied on a particular component.
 
@@ -157,3 +157,30 @@ Example:
 `:global .Post { ... } `
 
 Now you can use className="Post"  anywhere in your app and receive that styling.
+
+
+### Adding pseudoselectors with css modules
+Just like normal css files, we can use :hover over selectors, and it get applied to particular component only
+
+```
+.App button.Red { /* button with Red class */
+  background-color: red;
+}
+
+.App button.Red:hover {
+  background-color: salmon;
+  color: black;
+}
+```
+
+
+### Media queries with css modules
+Use media queries just like normal css file way!
+
+```
+@media (min-width: 500px) {
+    .Person {
+        width: 450px;
+    }
+}
+```
