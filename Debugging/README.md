@@ -45,5 +45,14 @@ export default ErrorBoundary;
 
 - `ComponentDidCatch` is a method that receives potential error and some additional info passed. It will be executed whenever component which is wrapped with ErrorBoundary throws an error.
 
+- Errorbondary used as a wrapping component, so it will be like:
+
+<Errorboundary>
+     <SomeOtherComp>
+     </SomeOtherComp>
+</Errorboundary>
+
+Note: Anything that comes in between start and closing tag of <Errorboundary> will be it's props children. Remember whenever we access children i.e. {props.children }, they are available by default. This means you don't pass them in a property, you can access them for the wrapping component (Erroboundary here). 
+
 - Wrap the component with ErrorBoundary comp. It acts just like a HOC. 
 - Note: If the component containing array has key property, move it to the wrapping component, since key should be the element when mapping an array.
