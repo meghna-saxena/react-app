@@ -61,5 +61,36 @@ We cant use pseudoselectors in inline styles. And css files have limitations, yo
 
 However it would be better if we can use pseudoselectors & media queries in inline style, since then we can manipulate over it. And for enabling that use 3rd party package - `radium`
 
+### Using radium as pseudoselectors
 Steps:
 - Import radium in the file where it will be used inside inline style
+- At the end call radium as a function and wrap App in it. Just like high-order component which is injecting some added functionality!
+- It can be used in both funct. as well as class components.
+- All psudoselectors are supported, just wrap in quotation mark. Eg - ':hover'
+
+
+### Using radium as media queries
+
+We can use media queries in css files as usual, like:
+```
+@media (min-width) {
+    .Person {
+        width: 450px;
+    }
+}
+```
+
+> Steps: 
+
+However, use media queries with radium, if you want to scope to a component or for changing it dynamically.
+ const style = {
+        '@media (min-width: 500px)': { //a valid js property name since its a string wrapped by quotes
+
+        }
+    }
+
+
+Error: For using media queries/keyframes, wrap application in StyleRoot component
+- Coorection: 
+ - - import Radium, { StyleRoot } from 'radium'; in the main root component, i.e app.js
+ - - wrap the entire app with <StyleRoot></StyleRoot>
