@@ -1,2 +1,1 @@
-# react-app
-Personal notes and project on React.
+## Diving Deeper into Components & React Internals

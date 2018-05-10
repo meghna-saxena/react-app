@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from '../Components/PersonList/Person/Person';
+import Person from '../components/PersonsList/Person';
 
 class App extends Component {
   state = {
     persons: [
-      { id: 'abc', name: 'Max', age: 28 },
-      { id: 'def', name: 'Mike', age: 25 },
-      { id: 'ghi', name: 'Neil', age: 29 }
+      { id: 'asfa1', name: 'Meggie', age: 28 },
+      { id: 'vasdf1', name: 'Raj', age: 29 },
+      { id: 'asdf11', name: 'Max', age: 30 }
     ],
     showPersons: false
   }
 
-  nameChangeHandler = (event, id) => {
+  nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
     });
@@ -20,6 +20,8 @@ class App extends Component {
     const person = {
       ...this.state.persons[personIndex]
     };
+
+    // const person = Object.assign({}, this.state.persons[personIndex]);
 
     person.name = event.target.value;
 
@@ -29,57 +31,54 @@ class App extends Component {
     this.setState({ persons: persons });
   }
 
-  deletePersonsHandler = (personIndex) => {
+  deletePersonHandler = (personIndex) => {
+    // const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
-    // splice removes on element from the array
     persons.splice(personIndex, 1);
     this.setState({ persons: persons });
   }
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
-    //if doesShow is true, showPersons is false and vice versa
     this.setState({ showPersons: !doesShow });
   }
 
   render() {
     let persons = null;
-    let btnClass = ''
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
         <div>
           {this.state.persons.map((person, index) => {
             return <Person
-              click={() => this.deletePersonsHandler(index)}
+              clicked={() => this.deletePersonHandler(index)}
               name={person.name}
               age={person.age}
               key={person.id}
-              changed={(event) => this.nameChangeHandler(event, person.id)} />
+              changed={(event) => this.nameChangedHandler(event, person.id)} />
           })}
         </div>
       );
 
       btnClass = classes.Red;
-    };
+    }
 
-    const assignedClasses = [];
+    const assignedClasses = []; //since classes is an array, join it while binding it to <p className>
     if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red);
+      assignedClasses.push(classes.red); // classes = ['red']
     }
     if (this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold);
+      assignedClasses.push(classes.bold); // classes = ['red','bold']
     }
 
     return (
       <div className={classes.App}>
-        <h1>Hi, I'm a react app</h1>
-        <p className={assignedClasses.join(' ')}>Setting className dynamically</p>
-        {/* it joins the array of strings  */}
+        <h1>Hi, I'm a React App</h1>
+        <p className={assignedClasses.join(' ')}>This is really working!</p>
         <button
           className={btnClass}
-          onClick={this.togglePersonsHandler}>Toggle Persons
-        </button>
+          onClick={this.togglePersonsHandler}>Toggle Persons</button>
         {persons}
       </div>
     );
