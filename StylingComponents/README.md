@@ -55,4 +55,11 @@ Define 2 className inside css file, and use both of them together by this techni
 ```
 
 
+## Adding & using radium
 
+We cant use pseudoselectors in inline styles. And css files have limitations, you have to give id/className to button or else style will be applied globally to all the buttons.
+
+However it would be better if we can use pseudoselectors & media queries in inline style, since then we can manipulate over it. And for enabling that use 3rd party package - `radium`
+
+Steps:
+- Import radium in the file where it will be used inside inline style
