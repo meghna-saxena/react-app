@@ -94,3 +94,14 @@ Error: For using media queries/keyframes, wrap application in StyleRoot componen
 - Coorection: 
  - - import Radium, { StyleRoot } from 'radium'; in the main root component, i.e app.js
  - - wrap the entire app with <StyleRoot></StyleRoot>
+
+
+
+## Enabling & using CSS modules
+
+How to scope css file to a particular component's js file? So that whatever style is decribed there, is only applied on a particular component.
+
+For enabling css modules, tweak the build config of project. 
+- Git commit all the changes first
+- Run `npm run eject` to get the config files, to make changes in the configuration.
+
