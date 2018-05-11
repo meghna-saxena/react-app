@@ -60,10 +60,10 @@ Note: Only availabe in stateful components!
 - It gives idea to react, what should be rendered
 - Prepare & structure jsx code
 - Other sub-components are also defined here
-- `Render child components`
 
+4. `Render child components`
 
-4. componentDidMount() 
+5. componentDidMount() 
 - Tells that comp has been successfully mounted
 - Can cause side-effects, and fetch some data
 - Dont update state, cause it triggers re-render
@@ -91,3 +91,49 @@ class App extends Component {
 }
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
+
+## Component Creation Lifecycle in Action
+Props are called only in the constructor method in a class comp. Define super inside constructor.
+
+When constructor method is not used, react automatically reaches super under the hood. - ES7 feature
+
+componentDidMount executes AFTER render() and therefore after all child components were rendered first and then componentDidMount  method gets executed.
+
+There also is one Lifecycle method which gets executed (when implemented) right before a Component is removed from the DOM: `componentWillUnmount()` .
+
+Here's an Example:
+
+> App.js (using class App extends Component )
+
+```
+state = {
+    showUserComponent: true
+};
+ 
+removeUserHandler = () => {
+    this.setState({showUserComponent: false});
+}
+ 
+render() {
+    return (
+        <div>
+            {this.state.showUserComponent ? <User /> : null}
+            <button onClick={this.removeUserHandler}>Remove User Component</button>
+        </div>
+    );
+}
+```
+
+> User.js (using class User extends Component )
+
+
+```
+componentWillUnmount() {
+    // Component is about to get removed => Perform any cleanup work here!
+    console.log('I\'m about to be removed!');
+}
+```
+In the above example, the User component is removed upon a button click (due to it being rendered conditionally and the condition result being changed to false ). This triggers componentWillUnmount()  to run in the User component right before the component is destroyed and removed from the DOM.
+
+
+## Component updating lifecycle hooks

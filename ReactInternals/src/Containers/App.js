@@ -4,15 +4,27 @@ import Persons from '../components/Persons';
 import ToggleButton from '../components/ToggleButton';
 
 class App extends Component {
-  state = {
-    persons: [
-      { id: 'asfa1', name: 'Meggie', age: 28 },
-      { id: 'vasdf1', name: 'Raj', age: 29 },
-      { id: 'asdf11', name: 'Max', age: 30 }
-    ],
-    showPersons: false
+  constructor(props) {
+    console.log('[App.js] inside constructor', props);
+    super(props);
+    this.state = {
+      persons: [
+        { id: 'asfa1', name: 'Meggie', age: 28 },
+        { id: 'vasdf1', name: 'Raj', age: 29 },
+        { id: 'asdf11', name: 'Max', age: 30 }
+      ],
+      showPersons: false
+    }
   }
 
+  componentWillMount() {
+    console.log('[app.js] Inside componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('[app.js] Inside componentDidMount');
+  }
+  
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
@@ -45,6 +57,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] inside render');
     let persons = null;
     let btnClass = '';
 
@@ -68,3 +81,4 @@ class App extends Component {
 }
 
 export default App;
+
