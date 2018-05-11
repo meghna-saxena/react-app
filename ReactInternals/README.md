@@ -137,3 +137,47 @@ In the above example, the User component is removed upon a button click (due to 
 
 
 ## Component updating lifecycle hooks
+Differentiate b/w updates triggered by parent, so changing props. And internally triggered updates, so by changing state.
+
+### Component Lifecycle - Update (triggered by parent)
+
+1. componentWillReceiveProps(nextProps)
+- Sync component's state (if any) with the props received from parent.
+- Dont cause side-effects, otherwsie causes rerendering and performance issues. 
+
+2. shouldComponentUpdate(nextProps, nextState)
+- Receive 2 args, the props and state which triggered this update.
+- This method can cancel the updating process! Because if return true the updating continues, if return false, updating stops, you never return anything!
+- If you allow update, the next lifecycle continues..
+
+3. componentWillUpdate(nextProps, nextState)
+- Again, can sync state to props
+
+```
+class PrintInColor extends Component {
+    backgroundColor = 'blue' // some default
+    
+    componentWillUpdate(nextProps) {
+        this.backgroundColor = nextProps.bgColor // passed via <PrintInColor bgColor={'red'} />
+    }
+ 
+    render() {
+        return (
+            <div style={this.backgroundColor}><p>Hello there</p></div>
+        );
+    }
+}
+```
+
+- Dont cause side-effects
+- Might be a better place to sync state to props bause unlike componentWillReceiveProps, here you know that you're continuing to update
+
+4. render()
+- Renders JSX- tells react  what the result will be after the update  
+- Prepare and structure JSX code
+
+5. Update child component props
+
+6. componentDidUpdate()
+- Can cause side-effect, just like in componentDidMount()
+- Dont update state - triggers rerendering
