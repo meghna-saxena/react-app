@@ -100,4 +100,3 @@ nameChangedHandler = (event, id) => {
   }
   ```
 
-
