@@ -136,10 +136,10 @@ componentWillUnmount() {
 In the above example, the User component is removed upon a button click (due to it being rendered conditionally and the condition result being changed to false ). This triggers componentWillUnmount()  to run in the User component right before the component is destroyed and removed from the DOM.
 
 
-## Component updating lifecycle hooks
+## Component Updating Lifecycle Hooks
 Differentiate b/w updates triggered by parent, so changing props. And internally triggered updates, so by changing state.
 
-### Component Lifecycle - Update (triggered by parent)
+### Component Lifecycle - Update (triggered by parent, by props)
 
 1. componentWillReceiveProps(nextProps)
 - Sync component's state (if any) with the props received from parent.
@@ -181,3 +181,9 @@ class PrintInColor extends Component {
 6. componentDidUpdate()
 - Can cause side-effect, just like in componentDidMount()
 - Dont update state - triggers rerendering
+
+
+Note: we write these methods like  componentDidUpdate() {..} and not  componentDidUpdate = () => {...}, since these methods are not called for DOM events, and therefore no `this` issue
+
+
+### Component Lifecycle - Update (triggered by state changes)
