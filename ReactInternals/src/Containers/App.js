@@ -14,7 +14,8 @@ class App extends PureComponent {
         { id: 'asdf11', name: 'Max', age: 30 }
       ],
       showPersons: false,
-      toggleClicked: 0
+      toggleClicked: 0,
+      authenticated: false
     }
   }
   //understanding lifecycle methods
@@ -82,6 +83,10 @@ class App extends PureComponent {
     });
   }
 
+  loginHandler = () => {
+    this.setState({ authenticated: true })
+  }
+
   render() {
     console.log('[App.js] inside render');
     let persons = null;
@@ -91,7 +96,8 @@ class App extends PureComponent {
       persons = <Persons
         persons={this.state.persons}
         clicked={this.deletePersonHandler}
-        changed={this.nameChangedHandler} />
+        changed={this.nameChangedHandler}
+        isAuthenticated={this.state.authenticated} />
     }
 
     return (
@@ -102,6 +108,7 @@ class App extends PureComponent {
         <ToggleButton
           showPersons={this.state.showPersons}
           persons={this.state.persons}
+          login={this.loginHandler}
           clicked={this.togglePersonsHandler} />
         {persons}
       </div>

@@ -4,8 +4,11 @@ import classes from './Person.css';
 
 class Person extends Component {
     constructor(props) {
-        console.log('[Person.js] inside constructor', props);
         super(props);
+        console.log('[Person.js] inside constructor', props);
+         // create a ref to store the textInput DOM element
+    
+        // this.inputElement =  React.createRef();
     }
 
     componentWillMount() {
@@ -14,6 +17,9 @@ class Person extends Component {
 
     componentDidMount() {
         console.log('[Person.js] Inside componentDidMount');
+        // if (this.props.position === 0) {
+        //     this.inputElement.current.focus();
+        // };
     }
 
     render() {
@@ -21,9 +27,14 @@ class Person extends Component {
 
         return (
             <div className={classes.Person}>
+            {this.props.authenticated ? <p>I'm authenticated</p> : null}
                 <p onClick={this.props.clicked}>I'm {this.props.name} and I'm {this.props.age} years old!</p>
                 <p>{this.props.children}</p>
-                <input type="text" onChange={this.props.changed} value={this.props.name} />
+                <input
+                    // ref={this.inputElement}
+                    type="text"
+                    onChange={this.props.changed}
+                    value={this.props.name} />
             </div>
         );
     }

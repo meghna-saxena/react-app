@@ -456,3 +456,45 @@ ReactDOM.render(
 ```
 
 The defaultProps will be used to ensure that this.props.name will have a value if it was not specified by the parent component. The propTypes typechecking happens after defaultProps are resolved, so typechecking will also apply to the defaultProps.
+
+
+
+## Using References("ref")
+- Used mostly when focusing text inputs
+- Only used in class comp
+
+```
+ <input ref={(input) => { this.inputElement = input }} />
+```
+Here input refers to the element whose ref you're passing, so you're making a special property this.InputElement and assigning your element to it.
+
+- Refer to that ref in method called after render, like componentDidMount()
+
+ ```
+ componentDidMount() {
+        if (this.props.position === 0) {
+            this.inputElement.focus();
+        };
+ }
+```
+
+> Note:
+React 16.3+ has introduced React,createRef()
+ //create a ref to store the textInput DOM element
+// this.inputElement =  React.createRef();
+
+
+### The context API (React 16.3)
+React.createContext() for assigning some global state. Instead of passing state via props to diff component, this is easy step, The Context API should be used for state that affects a lot of components, possibly in multiple tree branches. Useful for setting authentication, or bg color
+ - Has provider and consumer property
+
+ ### Additional lifecycle hooks (React 16.3)
+ getDerivedStateFromProps()
+ getSnapshotBeforeUpdate()
+
+
+Some lifecycle methods are deprecated
+Following the official docs (https://reactjs.org/docs/react-component.html#unsafe_componentwillreceiveprops), some lifecycle methods should now be prefixed with "UNSAFE_". Seems like these lifecycle hooks will get deprecated in React v17:
+componentWillMount
+componentWillReceiveProps
+componentWillUpdate
