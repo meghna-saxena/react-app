@@ -288,3 +288,26 @@ Note: Another approach of using HOCs, refer lecture 96-97
 HOCs are very useful. We also use HOCs provided by other packages such as connect() by Redux or withRouter() by the React router.
 
 These HOCs allow us to easily "inject" extra properties/ features into our components without us needing to re-write them.
+
+
+## Using setState correctly
+
+If you have to change state inside setState for primitves(counter no.), so instead of doing this.setState({something:  this.state.something+1}), use prevState.something + 1.
+Because in fromer method, you can interfere with state version, if state is changing at many place, since setState is a async func, you might not have current state. So prevState solves it.
+
+```
+togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState((prevState, props) => {
+      return {
+        showPersons: !doesShow,
+        toggleClicked: prevState.toggleClicked + 1
+      }
+    });
+  }
+  ```
+
+
+The "danger" of not using it is that you access this.state  right after calling this.setState  or inside of this.setState  and you actually get a "wrong" old state . So if you had a counter in your state, you might want to increment it.
+
+Doing this.setState({counter: this.state.counter + 1})  MIGHT work but could also skip a value because the state updates happen asynchronously.

@@ -13,7 +13,8 @@ class App extends PureComponent {
         { id: 'vasdf1', name: 'Raj', age: 29 },
         { id: 'asdf11', name: 'Max', age: 30 }
       ],
-      showPersons: false
+      showPersons: false,
+      toggleClicked: 0
     }
   }
   //understanding lifecycle methods
@@ -73,7 +74,12 @@ class App extends PureComponent {
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState({ showPersons: !doesShow });
+    this.setState((prevState, props) => {
+      return {
+        showPersons: !doesShow,
+        toggleClicked: prevState.toggleClicked + 1
+      }
+    });
   }
 
   render() {
