@@ -186,4 +186,39 @@ class PrintInColor extends Component {
 Note: we write these methods like  componentDidUpdate() {..} and not  componentDidUpdate = () => {...}, since these methods are not called for DOM events, and therefore no `this` issue
 
 
-### Component Lifecycle - Update (triggered by state changes)
+### Component Lifecycle - Update (triggered by state changes/ internal change)
+- By setState basically
+
+1. shouldComponentUpdate(nextProps, nextState)
+- May cancel updating process!
+- Decide whether to continue or not
+- Dont cause side effects
+
+2. componentWillUpdate()
+- Sync state to props
+- Cause side-effects
+
+3. render() 
+- Prepare and structure JSX
+
+4. Update child components
+
+5. componentDidUpdate()
+- Can cause side-effects
+- Dont update state - triggers re-rendering
+
+
+Note: Update triggered internally is similar to update triggered by parent, the only difference is there's no  componentWillReceiveProps(nextProps) lifecycle method here.
+
+
+## How shouldComponentUpdate(nextProps, nextState) is important?
+It renders every time something changes in your app. But when you dont change state, and then too just by clicking a button, a rendering occurs whch cause performance issues.
+Therefore make condtion checks, so that render doesnt occur unnecessarily.
+
+### Performance Gains with PureComponent
+For putting checks, we can avoid shouldComponentUpdate(nextProps, nextState), and `import {PureComponent}`, a special object from react lib, but it has shouldComponentUpdate check already built-in. So it will automatically compare props and state for changes and update only when it sees some changes.
+
+https://reactjs.org/docs/react-api.html#reactpurecomponent 
+React.PureComponent’s shouldComponentUpdate() only shallowly compares the objects. 
+If these contain complex data structures, it may produce false-negatives for deeper differences. 
+Only extend PureComponent when you expect to have simple props and state

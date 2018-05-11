@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons';
 import ToggleButton from '../components/ToggleButton';
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     console.log('[App.js] inside constructor', props);
     super(props);
@@ -16,6 +16,9 @@ class App extends Component {
       showPersons: false
     }
   }
+  //understanding lifecycle methods
+
+  //lifecycle methods for component creation/mounting
 
   componentWillMount() {
     console.log('[app.js] Inside componentWillMount');
@@ -25,11 +28,14 @@ class App extends Component {
     console.log('[app.js] Inside componentDidMount');
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('[UPDATE App.js] inside shouldComponentUpdate', nextProps, nextState);
-    return true;
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('[UPDATE App.js] inside shouldComponentUpdate', nextProps, nextState);
+  //   // return true;
+  //   return nextState.persons !== this.state.persons ||
+  //     nextState.showPersons !== this.state.showPersons
+  // }
 
+  // lifecycle methods for component update
   componentWillUpdate(nextProps, nextState) {
     console.log('[UPDATE App.js] inside componentWillUpdate', nextProps, nextState);
   }
@@ -37,6 +43,7 @@ class App extends Component {
   componentDidUpdate() {
     console.log('[UPDATE App.js] inside componentDidUpdate'); //newProps and newState are current props & current state at this time
   }
+
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
@@ -83,6 +90,9 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
+        {/*this button is always true*/}
+        <button onClick={() => this.setState({ showPersons: true })}>Show Persons</button>
+
         <ToggleButton
           showPersons={this.state.showPersons}
           persons={this.state.persons}
