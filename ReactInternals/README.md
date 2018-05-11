@@ -222,3 +222,69 @@ https://reactjs.org/docs/react-api.html#reactpurecomponent
 React.PureComponent’s shouldComponentUpdate() only shallowly compares the objects. 
 If these contain complex data structures, it may produce false-negatives for deeper differences. 
 Only extend PureComponent when you expect to have simple props and state
+
+
+## How React Updates the App & Component Tree
+Rendering & Updates
+
+App 
+- Shop
+- - List 
+- - Cart
+
+- Users
+- - User1
+- - User2
+- - User3
+
+Components & child components update when state or props change!
+
+
+## React Updates Virtual Dom
+- React renders and updates virtual DOM which compares itself with old virtual Dom , and only changes the part of app where updates occurs.
+- This is faster than directly rendering on real DOM
+
+
+## Returning Adjacent Elements (React 16+)
+ While returning JSX, all the elements should be wrapped in a single <div>. However, if its an array, it can be returned without any wrapping.
+ So instead of using <div>, we can use [] and put all JSX inside it. However every array should have key property
+
+ Better approach
+
+
+
+ ### HOC
+If your project uses React 16.2, you can now use a built-in "Aux" component - a so called fragment.
+
+It's actually not called Aux  but you simply use <>  - an empty JSX tag.
+
+So the following code
+
+```
+<Aux>
+    <h1>First Element</h1>
+    <h1>Second Element</h1>
+</Aux>
+becomes
+
+<>
+    <h1>First Element</h1>
+    <h1>Second Element</h1>
+</>
+
+```
+
+Behind the scenes, it does the same our Aux component did. Or instead of <>, import {Fragment} from react, and use it as a wrapping component.
+
+- For using className property inside hoc, make a hoc, and then define div className={props.classes}, then you can pass that classes property from the app component as <HOC classes={classes.App}>
+
+<WithClass> or <Aux> is a standard component that also gives a template-like access (to its child),  to the classes variable (CSS).  
+
+<Fragment> is a simplified component,  only meant for wrapping. They let you group a list of children without adding extra nodes to the DOM"
+
+Note: Another approach of using HOCs, refer lecture 96-97
+
+
+HOCs are very useful. We also use HOCs provided by other packages such as connect() by Redux or withRouter() by the React router.
+
+These HOCs allow us to easily "inject" extra properties/ features into our components without us needing to re-write them.
